@@ -19,7 +19,7 @@ function App() {
   })
 
   const addNewReading = (leitura) => {
-    // Bloqueio de leitura no mesmo dia
+    // Avoidind same day reading
     const registered = historico.some(item => item.data === leitura.data);
     
     if (registered) {
@@ -27,7 +27,7 @@ function App() {
       return;
     }
 
-    // Adiciona ID único usando o timestamp
+    // Adding unique id using timestamp
     const newReading = { ...leitura, id: Date.now() };
     setHistorico((prev) => [newReading, ...prev]);
   }
@@ -68,7 +68,7 @@ function App() {
 
           <div className='flex flex-col'>
             <h3 className='text-black text-md font-semibold'>Histórico de leituras</h3>
-            <p className='text-xs'>Acompanhe suas leituras já registradas.</p>
+            <p className='text-xs'>Acompanhe aqui suas leituras registradas.</p>
           </div>
         </div>
 
