@@ -8,17 +8,25 @@ import InfoCard from './components/InfoCard';
 // Icons
 import { FaRegCalendar } from "react-icons/fa6";
 import { FiClock } from "react-icons/fi";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [historico, setHistorico] = useState([])
+  const [historico, setHistorico] = useState(() => {
+    const data = localStorage.getItem('historico_leitura')
+
+    return data ? JSON.parse(data) : []
+  })
 
   const addNewReading = (leitura) => {
     console.log(leitura)
     // Add reading to the historic
     setHistorico((prevHistorico) => [leitura, ...prevHistorico]);
-    console.log(historico)
   }
+
+  useEffect(() => {
+    localStorage.setItem('historico_leitura', JSON.stringify(historico))
+  }, [historico])
+
   
 
   return (
@@ -55,7 +63,7 @@ function App() {
         </div>
 
         <div className='flex flex-col p-4'>
-          <ul>
+          <ul className='flex flex-col gap-2'>
             {
               historico.map((item, i) => (
                 <li key={i}>

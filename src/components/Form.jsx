@@ -40,14 +40,10 @@ const Form = ({ sendData }) => {
     const someFilledInput = Object.values(leitura).some(value => value !== "")
 
     if (someFilledInput) {
-      console.log("Chique")
+      sendData(leitura)
     } else {
       alert("Preencha pelo menos um campo.")
     }
-
-    // console.log(historico)
-
-    sendData(leitura)
   }
 
   return (
